@@ -40,6 +40,9 @@ import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.naga.filemanager.R;
 import com.naga.filemanager.activities.superclasses.ThemedActivity;
 import com.naga.filemanager.exceptions.ShellNotRunningException;
@@ -75,9 +78,17 @@ public class DatabaseViewerActivity extends ThemedActivity {
     public Toolbar toolbar;
     public SQLiteDatabase sqLiteDatabase;
 
+    private AdView mAdView;
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        MobileAds.initialize(this);
+
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
 

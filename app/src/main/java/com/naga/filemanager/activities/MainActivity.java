@@ -49,6 +49,11 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.fragment.app.Fragment;
@@ -57,6 +62,7 @@ import androidx.loader.app.LoaderManager;
 import androidx.loader.content.CursorLoader;
 import androidx.loader.content.Loader;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -67,6 +73,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
@@ -264,12 +271,19 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
 
     private static final String DEFAULT_FALLBACK_STORAGE_PATH = "/storage/sdcard0";
 
+    private AdView mAdView;
+
     /**
      * Called when the activity is first created.
      */
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
+
+
         dataUtils = DataUtils.getInstance();
 
         initialisePreferences();
@@ -425,6 +439,8 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
                 }
             }
         });
+        
+
     }
 
     private void checkForExternalPermission() {

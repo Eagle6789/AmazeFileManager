@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="appbar_name" translatable="false">Amaze Debug</string>
+    <string name="appbar_name" translatable="false">File Manager Debug</string>
 </resources>

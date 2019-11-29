@@ -60,7 +60,10 @@
                 android:minWidth="50dp"
                 android:layout_marginLeft="2dp"
                 android:layout_height="match_parent" />
+
         </LinearLayout>
+
+
 
         <View
             android:layout_width="match_parent"
@@ -71,7 +74,12 @@
             android:src="@drawable/fab_shadow_light"/>
         
         <include layout="@layout/layout_fab"/>
+
+
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+
     <com.naga.filemanager.ui.views.drawer.CustomNavigationView
         android:id="@+id/navigation"
         android:layout_width="@dimen/drawer_width"
