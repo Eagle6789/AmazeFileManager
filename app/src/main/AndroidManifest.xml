@@ -21,7 +21,7 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.amaze.filemanager">
+    package="com.naga.filemanager">
 
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -42,7 +42,7 @@
         android:required="false" />
 
     <application
-        android:name=".utils.application.AppConfig"
+        android:name="com.naga.filemanager.utils.application.AppConfig"
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
         tools:replace="android:label"
@@ -52,7 +52,7 @@
         <activity
             android:label="@string/appbar_name"
             android:launchMode="singleInstance"
-            android:name=".activities.MainActivity"
+            android:name="com.naga.filemanager.activities.MainActivity"
             android:theme="@style/appCompatLight">
 
             <intent-filter android:label="@string/appbar_name">
@@ -94,14 +94,14 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="com.amaze.filemanager" />
+                <data android:scheme="com.naga.filemanager" />
             </intent-filter>
 
             <intent-filter tools:ignore="AppLinkUrlError">
                 <action android:name="android.intent.action.VIEW" />
                 <data android:mimeType="resource/folder" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:scheme="com.amaze.filemanager" />
+                <data android:scheme="com.naga.filemanager" />
             </intent-filter>
 
             <intent-filter android:label="@string/intent_save_as">
@@ -115,7 +115,7 @@
         <activity
             android:uiOptions="splitActionBarWhenNarrow"
             android:label="@string/setting"
-            android:name=".activities.PreferencesActivity"
+            android:name="com.naga.filemanager.activities.PreferencesActivity"
             android:theme="@style/appCompatLight">
             <intent-filter>
                 <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
@@ -125,7 +125,7 @@
         </activity>
         <activity
             android:label="@string/textreader"
-            android:name=".activities.TextEditorActivity"
+            android:name="com.naga.filemanager.activities.TextEditorActivity"
             android:theme="@style/appCompatLight">
             <intent-filter
                 tools:ignore="AppLinkUrlError"
@@ -141,7 +141,7 @@
         </activity>
         <activity
             android:label="@string/databasereader"
-            android:name=".activities.DatabaseViewerActivity"
+            android:name="com.naga.filemanager.activities.DatabaseViewerActivity"
             android:theme="@style/appCompatLight"
             android:screenOrientation="locked">
             <intent-filter
@@ -154,41 +154,41 @@
 
         </activity>
 
-        <activity android:name=".activities.AboutActivity"
+        <activity android:name="com.naga.filemanager.activities.AboutActivity"
             android:theme="@style/aboutLight"
             android:label="About"
             />
 
         <service
-            android:name = ".asynchronous.services.ExtractService"
+            android:name = "com.naga.filemanager.asynchronous.services.ExtractService"
             android:label = "Extracting"
             >
         </service>
         <service
-            android:name = ".asynchronous.services.ZipService"
+            android:name = "com.naga.filemanager.asynchronous.services.ZipService"
             android:label = "Compressing"
             >
         </service>
         <service
-            android:name = ".asynchronous.services.CopyService"
+            android:name = "com.naga.filemanager.asynchronous.services.CopyService"
             android:label = "Copying"
             >
         </service>
 
-        <service android:name=".asynchronous.services.EncryptService"
+        <service android:name="com.naga.filemanager.asynchronous.services.EncryptService"
             android:label="@string/crypt_encrypting"
             />
 
-        <service android:name=".asynchronous.services.DecryptService"
+        <service android:name="com.naga.filemanager.asynchronous.services.DecryptService"
             android:label="@string/crypt_decrypting"
             />
 
         <service
-            android:name=".asynchronous.services.ftp.FtpService"
+            android:name="com.naga.filemanager.asynchronous.services.ftp.FtpService"
             android:enabled="true"
             android:exported="true" />
 
-        <service android:name=".asynchronous.services.ftp.FtpTileService"
+        <service android:name="com.naga.filemanager.asynchronous.services.ftp.FtpTileService"
             android:icon="@drawable/ic_ftp_dark"
             android:label="@string/ftp"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -199,17 +199,17 @@
         </service>
 
         <receiver
-            android:name=".asynchronous.services.ftp.FtpReceiver"
+            android:name="com.naga.filemanager.asynchronous.services.ftp.FtpReceiver"
             android:exported="true">
             <intent-filter>
-                <action android:name="com.amaze.filemanager.services.ftpservice.FTPReceiver.ACTION_START_FTPSERVER" />
-                <action android:name="com.amaze.filemanager.services.ftpservice.FTPReceiver.ACTION_STOP_FTPSERVER" />
+                <action android:name="com.naga.filemanagerservices.ftpservice.FTPReceiver.ACTION_START_FTPSERVER" />
+                <action android:name="com.naga.filemanagerservices.ftpservice.FTPReceiver.ACTION_STOP_FTPSERVER" />
             </intent-filter>
         </receiver>
 
         <provider
             android:authorities="${applicationId}.FILE_PROVIDER"
-            android:name=".utils.GenericFileProvider"
+            android:name="com.naga.filemanager.utils.GenericFileProvider"
             android:exported="false"
             android:grantUriPermissions="true">
 
@@ -220,7 +220,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.amaze.filemanager"
+            android:authorities="com.naga.filemanager"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

@@ -1,4 +1,4 @@
-package com.amaze.filemanager.utils;
+package com.naga.filemanager.utils;
 
 import android.content.Context;
 import androidx.annotation.NonNull;
@@ -11,9 +11,9 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.amaze.filemanager.R;
-import com.amaze.filemanager.activities.superclasses.BasicActivity;
-import com.amaze.filemanager.adapters.holders.DonationViewHolder;
+import com.naga.filemanager.R;
+import com.naga.filemanager.activities.superclasses.BasicActivity;
+import com.naga.filemanager.adapters.holders.DonationViewHolder;
 import com.android.billingclient.api.BillingClient;
 import com.android.billingclient.api.BillingClientStateListener;
 import com.android.billingclient.api.BillingFlowParams;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.amaze.filemanager.ui.views.CheckableCircleView
+<com.naga.filemanager.ui.views.CheckableCircleView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/icon"
     android:layout_width="50dp"

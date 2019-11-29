@@ -38,14 +38,14 @@
             android:gravity="center_vertical"
             android:background="?selectableItemBackground"
             >
-            <com.amaze.filemanager.ui.views.ThemedImageView
+            <com.naga.filemanager.ui.views.ThemedImageView
                 app:srcCompat="@drawable/ic_remote_grey_24dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/material_generic_medium"
                 />
 
-            <com.amaze.filemanager.ui.views.ThemedTextView
+            <com.naga.filemanager.ui.views.ThemedTextView
                 android:text="@string/smb_connection"
                 android:textColor="@android:color/darker_gray"
                 android:textSize="@dimen/material_generic_title"
@@ -62,14 +62,14 @@
             android:gravity="center_vertical"
             android:background="?selectableItemBackground"
             >
-            <com.amaze.filemanager.ui.views.ThemedImageView
+            <com.naga.filemanager.ui.views.ThemedImageView
                 app:srcCompat="@drawable/ic_linux_grey_24dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/material_generic_medium"
                 />
 
-            <com.amaze.filemanager.ui.views.ThemedTextView
+            <com.naga.filemanager.ui.views.ThemedTextView
                 android:text="@string/scp_connection"
                 android:textColor="@android:color/darker_gray"
                 android:textSize="@dimen/material_generic_title"
@@ -87,14 +87,14 @@
             android:background="?selectableItemBackground"
             android:visibility="gone"
             >
-            <com.amaze.filemanager.ui.views.ThemedImageView
+            <com.naga.filemanager.ui.views.ThemedImageView
                 app:srcCompat="@drawable/ic_dropbox_grey_24dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/material_generic_medium"
                 />
 
-            <com.amaze.filemanager.ui.views.ThemedTextView
+            <com.naga.filemanager.ui.views.ThemedTextView
                 android:text="@string/cloud_dropbox"
                 android:textColor="@android:color/darker_gray"
                 android:textSize="@dimen/material_generic_title"
@@ -111,14 +111,14 @@
             android:background="?selectableItemBackground"
             android:visibility="gone"
             >
-            <com.amaze.filemanager.ui.views.ThemedImageView
+            <com.naga.filemanager.ui.views.ThemedImageView
                 app:srcCompat="@drawable/ic_box_grey_24dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/material_generic_medium"
                 />
 
-            <com.amaze.filemanager.ui.views.ThemedTextView
+            <com.naga.filemanager.ui.views.ThemedTextView
                 android:text="@string/cloud_box"
                 android:textColor="@android:color/darker_gray"
                 android:textSize="@dimen/material_generic_title"
@@ -135,14 +135,14 @@
             android:background="?selectableItemBackground"
             android:visibility="gone"
             >
-            <com.amaze.filemanager.ui.views.ThemedImageView
+            <com.naga.filemanager.ui.views.ThemedImageView
                 app:srcCompat="@drawable/ic_google_drive_grey_24dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/material_generic_medium"
                 />
 
-            <com.amaze.filemanager.ui.views.ThemedTextView
+            <com.naga.filemanager.ui.views.ThemedTextView
                 android:text="@string/cloud_drive"
                 android:textColor="@android:color/darker_gray"
                 android:textSize="@dimen/material_generic_title"
@@ -159,14 +159,14 @@
             android:background="?selectableItemBackground"
             android:visibility="gone"
             >
-            <com.amaze.filemanager.ui.views.ThemedImageView
+            <com.naga.filemanager.ui.views.ThemedImageView
                 app:srcCompat="@drawable/ic_onedrive_grey_24dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/material_generic_medium"
                 />
 
-            <com.amaze.filemanager.ui.views.ThemedTextView
+            <com.naga.filemanager.ui.views.ThemedTextView
                 android:text="@string/cloud_onedrive"
                 android:textColor="@android:color/darker_gray"
                 android:textSize="@dimen/material_generic_title"
@@ -183,14 +183,14 @@
             android:background="?selectableItemBackground"
             android:visibility="visible"
             >
-            <com.amaze.filemanager.ui.views.ThemedImageView
+            <com.naga.filemanager.ui.views.ThemedImageView
                 app:srcCompat="@drawable/ic_onedrive_grey_24dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/material_generic_medium"
                 />
 
-            <com.amaze.filemanager.ui.views.ThemedTextView
+            <com.naga.filemanager.ui.views.ThemedTextView
                 android:text="@string/cloud_get"
                 android:textColor="@android:color/darker_gray"
                 android:textSize="@dimen/material_generic_title"

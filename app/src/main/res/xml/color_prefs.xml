@@ -5,12 +5,12 @@
         <Preference
             android:key="selectcolorconfig"
             android:title="@string/select_color_config"/>
-        <com.amaze.filemanager.ui.views.preference.CheckBox
+        <com.naga.filemanager.ui.views.preference.CheckBox
             android:key="coloriseIcons"
             android:defaultValue="true"
             android:title="@string/colorize"
             android:summary="@string/colorize_summary" />
-        <com.amaze.filemanager.ui.views.preference.CheckBox
+        <com.naga.filemanager.ui.views.preference.CheckBox
             android:key="colorednavigation"
             android:defaultValue="false"
             android:title="@string/colored_navigation"

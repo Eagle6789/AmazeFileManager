@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <com.amaze.filemanager.ui.views.WarnableTextInputLayout
+    <com.naga.filemanager.ui.views.WarnableTextInputLayout
         android:id="@+id/singleedittext_warnabletextinputlayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:ems="10" />
-    </com.amaze.filemanager.ui.views.WarnableTextInputLayout>
+    </com.naga.filemanager.ui.views.WarnableTextInputLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

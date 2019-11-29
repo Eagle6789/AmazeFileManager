@@ -7,13 +7,13 @@
     >
 
 
-    <com.amaze.filemanager.ui.views.ThemedImageView
+    <com.naga.filemanager.ui.views.ThemedImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_fingerprint_grey600_36dp"
         />
 
-    <com.amaze.filemanager.ui.views.ThemedTextView
+    <com.naga.filemanager.ui.views.ThemedTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/crypt_fingerprint_authenticate"

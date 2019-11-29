@@ -1,4 +1,4 @@
-package com.amaze.filemanager.activities;
+package com.naga.filemanager.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,11 +15,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.palette.graphics.Palette;
-import com.amaze.filemanager.R;
-import com.amaze.filemanager.activities.superclasses.BasicActivity;
-import com.amaze.filemanager.utils.Billing;
-import com.amaze.filemanager.utils.Utils;
-import com.amaze.filemanager.utils.theme.AppTheme;
+import com.naga.filemanager.R;
+import com.naga.filemanager.activities.superclasses.BasicActivity;
+import com.naga.filemanager.utils.Billing;
+import com.naga.filemanager.utils.Utils;
+import com.naga.filemanager.utils.theme.AppTheme;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.snackbar.Snackbar;
@@ -52,7 +52,7 @@ public class AboutActivity extends BasicActivity implements View.OnClickListener
     private static final String URL_REPO_ISSUES = "https://github.com/TeamAmaze/AmazeFileManager/issues";
     private static final String URL_REPO_TRANSLATE = "https://www.transifex.com/amaze/amaze-file-manager-1/";
     private static final String URL_REPO_XDA = "http://forum.xda-developers.com/android/apps-games/app-amaze-file-managermaterial-theme-t2937314";
-    private static final String URL_REPO_RATE = "market://details?id=com.amaze.filemanager";
+    private static final String URL_REPO_RATE = "market://details?id=com.naga.filemanager";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

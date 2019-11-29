@@ -43,7 +43,7 @@
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    <com.amaze.filemanager.ui.views.FastScroller
+    <com.naga.filemanager.ui.views.FastScroller
         android:id="@+id/fastscroll"
         android:orientation="vertical"
         android:layout_width="wrap_content"

@@ -46,7 +46,7 @@
                 android:scaleType="centerCrop"
                 android:layout_gravity="center"
                 android:id="@+id/apk_icon"/>
-            <com.amaze.filemanager.ui.views.RoundedImageView
+            <com.naga.filemanager.ui.views.RoundedImageView
                 android:id="@+id/picture_icon"
                 android:layout_width="@dimen/minimal_icon_size"
                 android:layout_height="@dimen/minimal_icon_size"
@@ -111,7 +111,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true">
 
-        <com.amaze.filemanager.ui.views.ThemedTextView
+        <com.naga.filemanager.ui.views.ThemedTextView
             android:id="@+id/firstline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
