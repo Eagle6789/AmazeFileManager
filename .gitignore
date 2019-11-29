@@ -52,3 +52,5 @@ projectFilesBackup
 captures
 *.iml
 
+# Build
+*.apk
