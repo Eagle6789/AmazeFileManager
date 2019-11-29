@@ -15,7 +15,7 @@ import com.bumptech.glide.module.AppGlideModule;
  * Ensures that Glide's generated API is created for the Gallery sample.
  */
 @GlideModule
-public class AmazeFileManagerModule extends AppGlideModule {
+public class FileManagerModule extends AppGlideModule {
     @Override
     public void registerComponents(Context context, Glide glide, Registry registry) {
         registry.prepend(String.class, Drawable.class, new ApkImageModelLoaderFactory(context.getPackageManager()));

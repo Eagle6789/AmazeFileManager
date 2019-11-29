@@ -84,11 +84,6 @@ public class DatabaseViewerActivity extends ThemedActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MobileAds.initialize(this);
-
-        mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
 
