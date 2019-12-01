@@ -440,7 +440,11 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
             }
         });
 
+        MobileAds.initialize(this);
 
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
     }
 
@@ -842,11 +846,7 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
         });
         */
 
-        MobileAds.initialize(this);
 
-        mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
         return super.onCreateOptionsMenu(menu);
     }
 
