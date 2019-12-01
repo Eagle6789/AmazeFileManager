@@ -52,5 +52,8 @@ projectFilesBackup
 captures
 *.iml
 
-# Build
+
+# build
 *.apk
+app/fdroid/
+app/play/
