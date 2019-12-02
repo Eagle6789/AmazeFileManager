@@ -224,7 +224,7 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
 
     private AppBarLayout appBarLayout;
 
-    private View fabBgView;
+//    private View fabBgView;
     private UtilsHandler utilsHandler;
     private CloudHandler cloudHandler;
     private CloudLoaderAsyncTask cloudLoaderAsyncTask;
@@ -1548,17 +1548,17 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
             }
         });
 
-        floatingActionButton.setMenuListener(new FABsMenuListener() {
-            @Override
-            public void onMenuExpanded(FABsMenu fabsMenu) {
-                FileUtils.revealShow(fabBgView, true);
-            }
-
-            @Override
-            public void onMenuCollapsed(FABsMenu fabsMenu) {
-                FileUtils.revealShow(fabBgView, false);
-            }
-        });
+//        floatingActionButton.setMenuListener(new FABsMenuListener() {
+//            @Override
+//            public void onMenuExpanded(FABsMenu fabsMenu) {
+//                FileUtils.revealShow(fabBgView, true);
+//            }
+//
+//            @Override
+//            public void onMenuCollapsed(FABsMenu fabsMenu) {
+//                FileUtils.revealShow(fabBgView, false);
+//            }
+//        });
 
         initFabTitle(findViewById(R.id.menu_new_folder), MainActivityHelper.NEW_FOLDER);
         initFabTitle(findViewById(R.id.menu_new_file), MainActivityHelper.NEW_FILE);
@@ -1720,11 +1720,11 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
      * It covers the fragment.
      */
     public void showSmokeScreen() {
-        FileUtils.revealShow(fabBgView, true);
+//        FileUtils.revealShow(fabBgView, true);
     }
 
     public void hideSmokeScreen() {
-        FileUtils.revealShow(fabBgView, false);
+//        FileUtils.revealShow(fabBgView, false);
     }
 
     @Override
