@@ -45,6 +45,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.service.quicksettings.TileService;
+
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -58,11 +59,13 @@ import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.snackbar.Snackbar;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.CursorLoader;
 import androidx.loader.content.Loader;
+
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -75,6 +78,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -82,6 +86,7 @@ import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.naga.filemanager.R;
 import com.naga.filemanager.activities.superclasses.PermissionsActivity;
+import com.naga.filemanager.activities.superclasses.ThemedActivity;
 import com.naga.filemanager.asynchronous.asynctasks.CloudLoaderAsyncTask;
 import com.naga.filemanager.asynchronous.asynctasks.DeleteTask;
 import com.naga.filemanager.asynchronous.asynctasks.MoveFiles;
@@ -116,6 +121,7 @@ import com.naga.filemanager.fragments.SearchWorkerFragment;
 import com.naga.filemanager.fragments.TabFragment;
 import com.naga.filemanager.fragments.preference_fragments.PreferencesConstants;
 import com.naga.filemanager.ui.colors.ColorPreferenceHelper;
+import com.naga.filemanager.ui.dialogs.CreateSomethingListDialog;
 import com.naga.filemanager.ui.dialogs.GeneralDialogCreation;
 import com.naga.filemanager.ui.dialogs.RenameBookmark;
 import com.naga.filemanager.ui.dialogs.RenameBookmark.BookmarkCallback;
@@ -296,7 +302,7 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
         setContentView(R.layout.main_toolbar);
 
         appbar = new AppBar(this, getPrefs(), queue -> {
-            if(!queue.isEmpty()) {
+            if (!queue.isEmpty()) {
                 mainActivityHelper.search(getPrefs(), queue);
             }
         });
@@ -306,7 +312,7 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
         cloudHandler = new CloudHandler(this);
 
         mainActivityHelper = new MainActivityHelper(this);
-        initialiseFab();// TODO: 7/12/2017 not init when actionIntent != null
+//        initialiseFab();// TODO: 7/12/2017 not init when actionIntent != null
 
         if (CloudSheetFragment.isCloudProviderAvailable(this)) {
 
@@ -403,7 +409,7 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
                         //Commit the transaction
                         transaction.commit();
                         supportInvalidateOptionsMenu();
-                    }  else if (intent.getAction() != null &&
+                    } else if (intent.getAction() != null &&
                             intent.getAction().equals(TileService.ACTION_QS_TILE_PREFERENCES)) {
                         // tile preferences, open ftp fragment
 
@@ -441,10 +447,16 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
         });
 
         MobileAds.initialize(this);
-
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+
+        ImageView createSomethingImageView = findViewById(R.id.create_something);
+
+        createSomethingImageView.setOnClickListener(view -> {
+            final MaterialDialog materialDialog = CreateSomethingListDialog.show(this, R.string.create_something_title, mainActivityHelper);
+            materialDialog.show();
+        });
 
     }
 
@@ -546,7 +558,7 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
                 Uri uri = intent.getParcelableExtra(Intent.EXTRA_STREAM);
                 ArrayList<Uri> uris = new ArrayList<>();
                 uris.add(uri);
-                initFabToSave(uris);
+//                initFabToSave(uris);
 
                 // disable screen rotation just for convenience purpose
                 // TODO: Support screen rotation when saving a file
@@ -574,11 +586,11 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
 
         floatingActionButton.setMenuButtonIcon(R.drawable.ic_file_download_white_24dp);
         floatingActionButton.getMenuButton().setOnClickListener(v -> {
-            if(uris != null && uris.size() > 0) {
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            if (uris != null && uris.size() > 0) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     File folder = new File(getCurrentMainFragment().getCurrentPath());
                     int result = mainActivityHelper.checkFolder(folder, MainActivity.this);
-                    if(result == MainActivityHelper.WRITABLE_OR_ON_SDCARD){
+                    if (result == MainActivityHelper.WRITABLE_OR_ON_SDCARD) {
                         FileUtil.writeUriToStorage(MainActivity.this, uris, getContentResolver(), getCurrentMainFragment().getCurrentPath());
                         finish();
                     } else {
@@ -651,7 +663,7 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
             if (TextUtils.isEmpty(rawExternalStorage)) {
                 // EXTERNAL_STORAGE undefined; falling back to default.
                 // Check for actual existence of the directory before adding to list
-                if(new File(DEFAULT_FALLBACK_STORAGE_PATH).exists()) {
+                if (new File(DEFAULT_FALLBACK_STORAGE_PATH).exists()) {
                     rv.add(DEFAULT_FALLBACK_STORAGE_PATH);
                 } else {
                     //We know nothing else, use Environment's fallback
@@ -701,7 +713,7 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
                     rv.add(s);
             }
         }
-        if (isRootExplorer()){
+        if (isRootExplorer()) {
             rv.add("/");
         }
         File usb = getUsbDrive();
@@ -733,7 +745,7 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
                 getCurrentMainFragment().goBack();
             }
         } else if (fragment instanceof CompressedExplorerFragment) {
-            CompressedExplorerFragment compressedExplorerFragment = (CompressedExplorerFragment)  getFragmentAtFrame();
+            CompressedExplorerFragment compressedExplorerFragment = (CompressedExplorerFragment) getFragmentAtFrame();
             if (compressedExplorerFragment.mActionMode == null) {
                 if (compressedExplorerFragment.canGoBack()) {
                     compressedExplorerFragment.goBack();
@@ -810,8 +822,8 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
         transaction.addToBackStack("tabt" + 1);
         transaction.commitAllowingStateLoss();
         appbar.setTitle(null);
-        floatingActionButton.setVisibility(View.VISIBLE);
-        floatingActionButton.getMenuButton().show();
+//        floatingActionButton.setVisibility(View.VISIBLE);
+//        floatingActionButton.getMenuButton().show();
         if (openzip && zippath != null) {
             openCompressed(zippath);
             zippath = null;
@@ -869,7 +881,8 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
                 else s.setTitle(R.string.listview);
                 appbar.getBottomBar().updatePath(ma.getCurrentPath(), ma.results,
                         MainActivityHelper.SEARCH_TEXT, ma.openMode, ma.folder_count, ma.file_count, ma);
-            } catch (Exception e) {}
+            } catch (Exception e) {
+            }
 
             appbar.getBottomBar().setClickListener();
 
@@ -970,7 +983,7 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
                     break;
                 }
                 final MaterialDialog dialog = GeneralDialogCreation.showBasicDialog(mainActivity,
-                       R.string.question_set_path_as_home, R.string.set_as_home, R.string.yes, R.string.no);
+                        R.string.question_set_path_as_home, R.string.set_as_home, R.string.yes, R.string.no);
                 dialog.getActionButton(DialogAction.POSITIVE).setOnClickListener((v) -> {
                     main.home = main.getCurrentPath();
                     updatePaths(main.no);
@@ -1094,7 +1107,7 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putBoolean(KEY_DRAWER_SELECTED, drawer.isSomethingSelected());
-        if(pasteHelper != null) {
+        if (pasteHelper != null) {
             outState.putParcelable(PASTEHELPER_BUNDLE, pasteHelper);
         }
 
@@ -1153,7 +1166,7 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
         boolean isInformationUpdated = false;
         List<UsbOtgRepresentation> connectedDevices = OTGUtil.getMassStorageDevicesConnected(this);
 
-        if(!connectedDevices.isEmpty()) {
+        if (!connectedDevices.isEmpty()) {
             if (SingletonUsbOtg.getInstance().getUsbOtgRoot() != null && OTGUtil.isUsbUriAccessible(this)) {
                 for (UsbOtgRepresentation device : connectedDevices) {
                     if (SingletonUsbOtg.getInstance().checkIfRootIsFromDevice(device)) {
@@ -1161,19 +1174,19 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
                         break;
                     }
                 }
-                
-                if(!isInformationUpdated) {
+
+                if (!isInformationUpdated) {
                     SingletonUsbOtg.getInstance().resetUsbOtgRoot();
                 }
             }
 
-            if(!isInformationUpdated) {
+            if (!isInformationUpdated) {
                 SingletonUsbOtg.getInstance().setConnectedDevice(connectedDevices.get(0));
                 isInformationUpdated = true;
             }
         }
 
-        if(!isInformationUpdated) {
+        if (!isInformationUpdated) {
             SingletonUsbOtg.getInstance().resetUsbOtgRoot();
             drawer.refreshDrawer();
             goToMain(null);
@@ -1234,7 +1247,7 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
 
         CryptHandler cryptHandler = new CryptHandler(this);
         cryptHandler.close();
-        
+
         SshConnectionPool.getInstance().expungeAllConnections();
     }
 
@@ -1273,7 +1286,7 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
     public MainFragment getCurrentMainFragment() {
         TabFragment tab = getTabFragment();
 
-        if(tab != null && tab.getCurrentTabFragment() instanceof MainFragment) {
+        if (tab != null && tab.getCurrentTabFragment() instanceof MainFragment) {
             return (MainFragment) tab.getCurrentTabFragment();
         } else return null;
     }
@@ -1300,7 +1313,8 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
             for (File f : parent.listFiles())
                 if (f.exists() && f.getName().toLowerCase().contains("usb") && f.canExecute())
                     return f;
-        } catch (Exception e) {}
+        } catch (Exception e) {
+        }
 
         parent = new File("/mnt/sdcard/usbStorage");
         if (parent.exists() && parent.canExecute())
@@ -1333,8 +1347,9 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
                 // Get Uri from Storage Access Framework.
                 treeUri = intent.getData();
                 // Persist URI - this is required for verification of writability.
-                if (treeUri != null) getPrefs().edit().putString(PreferencesConstants.PREFERENCE_URI,
-                        treeUri.toString()).commit();
+                if (treeUri != null)
+                    getPrefs().edit().putString(PreferencesConstants.PREFERENCE_URI,
+                            treeUri.toString()).commit();
             } else {
                 // If not confirmed SAF, or if still not writable, then revert settings.
                 /* DialogUtil.displayError(getActivity(), R.string.message_dialog_cannot_write_to_folder_saf, false, currentFolder);
@@ -1355,7 +1370,7 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
                     break;
                 case DataUtils.COPY://copying
                     //legacy compatibility
-                    if(oparrayList != null && oparrayList.size() != 0) {
+                    if (oparrayList != null && oparrayList.size() != 0) {
                         oparrayListList = new ArrayList<>();
                         oparrayListList.add(oparrayList);
                         oparrayList = null;
@@ -1373,7 +1388,7 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
                     break;
                 case DataUtils.MOVE://moving
                     //legacy compatibility
-                    if(oparrayList != null && oparrayList.size() != 0) {
+                    if (oparrayList != null && oparrayList.size() != 0) {
                         oparrayListList = new ArrayList<>();
                         oparrayListList.add(oparrayList);
                         oparrayList = null;
@@ -1447,20 +1462,21 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
         indicator_layout = findViewById(R.id.indicator_layout);
 
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        fabBgView = findViewById(R.id.fab_bg);
-
-        switch (getAppTheme().getSimpleTheme()) {
-            case DARK:
-                fabBgView.setBackgroundResource(R.drawable.fab_shadow_dark);
-                break;
-            case BLACK:
-                fabBgView.setBackgroundResource(R.drawable.fab_shadow_black);
-                break;
-        }
-
-        fabBgView.setOnClickListener(view -> {
-            if (getAppbar().getSearchView().isEnabled()) getAppbar().getSearchView().hideSearchView();
-        });
+//        fabBgView = findViewById(R.id.fab_bg);
+//
+//        switch (getAppTheme().getSimpleTheme()) {
+//            case DARK:
+//                fabBgView.setBackgroundResource(R.drawable.fab_shadow_dark);
+//                break;
+//            case BLACK:
+//                fabBgView.setBackgroundResource(R.drawable.fab_shadow_black);
+//                break;
+//        }
+//
+//        fabBgView.setOnClickListener(view -> {
+//            if (getAppbar().getSearchView().isEnabled())
+//                getAppbar().getSearchView().hideSearchView();
+//        });
 
         drawer.setDrawerHeaderBackground();
         //getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor((currentTab==1 ? skinTwo : skin))));
@@ -1480,7 +1496,7 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
             if (drawer.isLocked()) {
                 window.setStatusBarColor((skinStatusBar));
             } else window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            if ( getBoolean(PREFERENCE_COLORED_NAVIGATION))
+            if (getBoolean(PREFERENCE_COLORED_NAVIGATION))
                 window.setNavigationBarColor(skinStatusBar);
         }
     }
@@ -1501,7 +1517,7 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
         if (SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             // for lollipop devices, the status bar color
             mainActivity.getWindow().setStatusBarColor(colorDrawable.getColor());
-            if ( getBoolean(PREFERENCE_COLORED_NAVIGATION))
+            if (getBoolean(PREFERENCE_COLORED_NAVIGATION))
                 mainActivity.getWindow().setNavigationBarColor(PreferenceUtils
                         .getStatusColor(colorDrawable.getColor()));
         } else if (SDK_INT == Build.VERSION_CODES.KITKAT_WATCH || SDK_INT == Build.VERSION_CODES.KITKAT) {
@@ -1687,12 +1703,12 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
         bundle.putString("username", userinfo.indexOf(':') > 0 ?
                 userinfo.substring(0, userinfo.indexOf(':')) : userinfo);
 
-        if(userinfo.indexOf(':') < 0) {
+        if (userinfo.indexOf(':') < 0) {
             bundle.putBoolean("hasPassword", false);
             bundle.putString("keypairName", utilsHandler.getSshAuthPrivateKeyName(path));
         } else {
             bundle.putBoolean("hasPassword", true);
-            bundle.putString("password", userinfo.substring(userinfo.indexOf(':')+1));
+            bundle.putString("password", userinfo.substring(userinfo.indexOf(':') + 1));
         }
         bundle.putBoolean("edit", edit);
         sftpConnectDialog.setArguments(bundle);
@@ -1816,8 +1832,8 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
     }
 
     @Override
-    public void onProgressUpdate(HybridFileParcelable val , String query) {
-        mainFragment.addSearchResult(val,query);
+    public void onProgressUpdate(HybridFileParcelable val, String query) {
+        mainFragment.addSearchResult(val, query);
     }
 
     @Override
@@ -1868,7 +1884,7 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         Uri uri = Uri.withAppendedPath(Uri.parse("content://" + CloudContract.PROVIDER_AUTHORITY), "/keys.db/secret_keys");
 
-        String[] projection = new String[] {
+        String[] projection = new String[]{
                 CloudContract.COLUMN_ID,
                 CloudContract.COLUMN_CLIENT_ID,
                 CloudContract.COLUMN_CLIENT_SECRET_KEY
@@ -1903,10 +1919,10 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
                     String ids[] = new String[cloudEntries.size() + 1];
 
                     ids[0] = 1 + "";
-                    for (int i=1; i<=cloudEntries.size(); i++) {
+                    for (int i = 1; i <= cloudEntries.size(); i++) {
 
                         // we need to get only those cloud details which user wants
-                        switch (cloudEntries.get(i-1).getServiceType()) {
+                        switch (cloudEntries.get(i - 1).getServiceType()) {
                             case GDRIVE:
                                 ids[i] = 2 + "";
                                 break;
@@ -1961,5 +1977,14 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
+    }
+
+    private void intiCreateSomething(TitleFAB fabTitle, int type) {
+
+        fabTitle.setOnClickListener(view -> {
+            mainActivityHelper.add(type);
+            // dismiss dialog
+        });
+
     }
 }

@@ -70,7 +70,16 @@
 
             </LinearLayout>
 
+            <!--                <View-->
+            <!--                    android:id="@+id/fab_bg"-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="match_parent"-->
+            <!--                    android:clickable="true"-->
+            <!--                    android:focusable="true"-->
+            <!--                    android:src="@drawable/fab_shadow_light"-->
+            <!--                    android:visibility="gone" />-->
 
+            <!--                <include layout="@layout/layout_fab" />-->
 
             <LinearLayout
                 android:id="@+id/bannerAdLayout"
@@ -78,20 +87,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_gravity="bottom"
-                android:gravity="right"
-
+                android:gravity="center_horizontal"
                 android:orientation="horizontal">
 
-                <View
-                    android:id="@+id/fab_bg"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:src="@drawable/fab_shadow_light"
-                    android:visibility="gone" />
 
-                <include layout="@layout/layout_fab" />
 
                 <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/adView"

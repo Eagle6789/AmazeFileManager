@@ -58,16 +58,16 @@
                 android:layout_marginTop="@dimen/padding_normal"
                 app:currentPageIndicatorColor="?attr/colorAccent" />
 
-            <View
-                android:id="@+id/fab_bg"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/fab_shadow_light"
-                android:clickable="true"
-                android:focusable="true"
-                android:visibility="gone" />
+<!--            <View-->
+<!--                android:id="@+id/fab_bg"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:background="@drawable/fab_shadow_light"-->
+<!--                android:clickable="true"-->
+<!--                android:focusable="true"-->
+<!--                android:visibility="gone" />-->
 
-            <include layout="@layout/layout_fab" />
+<!--            <include layout="@layout/layout_fab" />-->
 
             <LinearLayout
                 android:id="@+id/bannerAdLayout"
@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_gravity="bottom"
-                android:gravity="left"
+                android:gravity="center_horizontal"
                 android:orientation="horizontal">
 
 

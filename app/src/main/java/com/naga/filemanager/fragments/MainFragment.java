@@ -1418,6 +1418,7 @@ public class MainFragment extends Fragment implements BottomBarButtonPath {
         super.onResume();
         (getActivity()).registerReceiver(receiver2, new IntentFilter(MainActivity.KEY_INTENT_LOAD_LIST));
 
+        // For persistence of the app
         getMainActivity().getDrawer().selectCorrectDrawerItemForPath(getPath());
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {

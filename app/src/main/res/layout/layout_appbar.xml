@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.appbar.AppBarLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.appbar.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/lin"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -86,17 +86,40 @@
                         android:visibility="gone"/>
                 </LinearLayout>
             </HorizontalScrollView>
-            <TextView
-                android:clickable="false"
-                android:layout_width="wrap_content"
-                android:textSize="12sp"
-                android:paddingBottom="8dp"
-                android:paddingTop="5dp"
-                android:paddingLeft="72dp"
-                android:textColor="@android:color/white"
+            <RelativeLayout
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:id="@+id/pathname" />
+                >
+
+
+                <TextView
+                    android:id="@+id/pathname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:clickable="false"
+                    android:paddingLeft="72dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="8dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp" />
+
+
+                <ImageView
+                    android:id="@+id/create_something"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:paddingRight="351dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="8dp"
+                    android:layout_gravity="end"
+                    app:srcCompat="@drawable/ic_add_white_24dp" />
+
+
+
+            </RelativeLayout>
 
         </LinearLayout>
     </FrameLayout>
