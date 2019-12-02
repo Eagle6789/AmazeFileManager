@@ -86,9 +86,10 @@
                 </LinearLayout>
             </HorizontalScrollView>
 
-            <RelativeLayout
-                android:layout_width="fill_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 >
 
 
@@ -109,17 +110,18 @@
                     android:id="@+id/create_something"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@null"
                     android:clickable="true"
-                    android:focusable="true"
-                    android:paddingStart="351dp"
+                    android:paddingStart="191dp"
                     android:paddingTop="5dp"
                     android:paddingBottom="8dp"
-                    android:layout_gravity="end"
-                    app:srcCompat="@drawable/ic_add_white_24dp" />
+                    android:scaleType="fitXY"
+                    app:srcCompat="@drawable/ic_add_white_24dp"
+                    android:focusable="true" />
 
 
 
-            </RelativeLayout>
+            </LinearLayout>
 
         </LinearLayout>
     </FrameLayout>

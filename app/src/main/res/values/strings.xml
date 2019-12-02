@@ -131,6 +131,7 @@
     <string name="enablerootmde">Enable Root Mode</string>
     <string name="goback">Go Back</string>
     <string name="newfile">New File</string>
+    <string name="newcloud">New Cloud</string>
     <string name="no_files">No Files</string>
     <string name="used">used space</string>
     <string name="used_by_others">used by others</string>

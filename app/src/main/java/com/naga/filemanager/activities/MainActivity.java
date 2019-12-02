@@ -52,11 +52,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -67,7 +64,6 @@ import androidx.loader.content.CursorLoader;
 import androidx.loader.content.Loader;
 
 import android.text.TextUtils;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -79,7 +75,6 @@ import android.view.WindowManager;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
@@ -87,7 +82,6 @@ import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.naga.filemanager.R;
 import com.naga.filemanager.activities.superclasses.PermissionsActivity;
-import com.naga.filemanager.activities.superclasses.ThemedActivity;
 import com.naga.filemanager.asynchronous.asynctasks.CloudLoaderAsyncTask;
 import com.naga.filemanager.asynchronous.asynctasks.DeleteTask;
 import com.naga.filemanager.asynchronous.asynctasks.MoveFiles;
@@ -121,8 +115,8 @@ import com.naga.filemanager.fragments.ProcessViewerFragment;
 import com.naga.filemanager.fragments.SearchWorkerFragment;
 import com.naga.filemanager.fragments.TabFragment;
 import com.naga.filemanager.fragments.preference_fragments.PreferencesConstants;
+import com.naga.filemanager.ui.CreateSomethingPopupMenu;
 import com.naga.filemanager.ui.colors.ColorPreferenceHelper;
-import com.naga.filemanager.ui.dialogs.CreateSomethingListDialog;
 import com.naga.filemanager.ui.dialogs.GeneralDialogCreation;
 import com.naga.filemanager.ui.dialogs.RenameBookmark;
 import com.naga.filemanager.ui.dialogs.RenameBookmark.BookmarkCallback;
@@ -744,11 +738,15 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
             // hide search view if visible, with an animation
             getAppbar().getSearchView().hideSearchView();
         } else if (fragment instanceof TabFragment) {
-            if (floatingActionButton.isExpanded()) {
-                floatingActionButton.collapse();
-            } else {
-                getCurrentMainFragment().goBack();
-            }
+//            if (floatingActionButton.isExpanded()) {
+//                floatingActionButton.collapse();
+//            } else {
+//                getCurrentMainFragment().goBack();
+//
+//            }
+
+            getCurrentMainFragment().goBack();
+
         } else if (fragment instanceof CompressedExplorerFragment) {
             CompressedExplorerFragment compressedExplorerFragment = (CompressedExplorerFragment) getFragmentAtFrame();
             if (compressedExplorerFragment.mActionMode == null) {
@@ -1985,9 +1983,9 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
     }
 
     private void initializeCreateSomethingPopMenu(View view) {
-        PopupMenu popupMenu = new PopupMenu(this, view);
+        PopupMenu popupMenu = new CreateSomethingPopupMenu(this, view, mainActivity);
         MenuInflater menuInflater = popupMenu.getMenuInflater();
-        menuInflater.inflate(R.menu.create_something, popupMenu.getMenu());
+        menuInflater.inflate(R.menu.create_something_menu, popupMenu.getMenu());
         popupMenu.show();
     }
 }
