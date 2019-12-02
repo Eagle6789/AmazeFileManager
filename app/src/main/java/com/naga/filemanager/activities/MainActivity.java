@@ -80,6 +80,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
@@ -454,9 +455,13 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
         ImageView createSomethingImageView = findViewById(R.id.create_something);
 
         createSomethingImageView.setOnClickListener(view -> {
-            final MaterialDialog materialDialog = CreateSomethingListDialog.show(this, R.string.create_something_title, mainActivityHelper);
-            materialDialog.show();
+//            final MaterialDialog materialDialog = CreateSomethingListDialog.show(this, R.string.create_something_title, mainActivityHelper);
+//            materialDialog.show();
+            initializeCreateSomethingPopMenu(view);
         });
+
+
+
 
     }
 
@@ -1979,12 +1984,10 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
     public void onLoaderReset(Loader<Cursor> loader) {
     }
 
-    private void intiCreateSomething(TitleFAB fabTitle, int type) {
-
-        fabTitle.setOnClickListener(view -> {
-            mainActivityHelper.add(type);
-            // dismiss dialog
-        });
-
+    private void initializeCreateSomethingPopMenu(View view) {
+        PopupMenu popupMenu = new PopupMenu(this, view);
+        MenuInflater menuInflater = popupMenu.getMenuInflater();
+        menuInflater.inflate(R.menu.create_something, popupMenu.getMenu());
+        popupMenu.show();
     }
 }
