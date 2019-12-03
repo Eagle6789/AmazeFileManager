@@ -64,6 +64,7 @@ import androidx.loader.content.CursorLoader;
 import androidx.loader.content.Loader;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -449,10 +450,13 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
         ImageView createSomethingImageView = findViewById(R.id.create_something);
 
         createSomethingImageView.setOnClickListener(view -> {
+            // dialog
 //            final MaterialDialog materialDialog = CreateSomethingListDialog.show(this, R.string.create_something_title, mainActivityHelper);
 //            materialDialog.show();
-            initializeCreateSomethingPopMenu(view);
+            showCreateSomethingMenu(view);
         });
+
+
 
 
 
@@ -1073,8 +1077,24 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
                     mainActivityHelper.extractFile(((CompressedExplorerFragment) fragment1).compressedFile);
                 }
                 break;
+
+
             case R.id.search:
                 getAppbar().getSearchView().revealSearchView();
+                break;
+            case R.id.new_folder_popup_menu_item:
+                mainActivity.mainActivityHelper.add(MainActivityHelper.NEW_FOLDER);
+
+                break;
+
+            case R.id.new_file_popup_menu_item:
+                mainActivity.mainActivityHelper.add(MainActivityHelper.NEW_FILE);
+
+                break;
+
+            case R.id.new_cloud_popup_menu_item:
+                mainActivity.mainActivityHelper.add(MainActivityHelper.NEW_CLOUD);
+
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -1982,7 +2002,7 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
     public void onLoaderReset(Loader<Cursor> loader) {
     }
 
-    private void initializeCreateSomethingPopMenu(View view) {
+    private void showCreateSomethingMenu(View view) {
         PopupMenu popupMenu = new CreateSomethingPopupMenu(this, view, mainActivity);
         MenuInflater menuInflater = popupMenu.getMenuInflater();
         menuInflater.inflate(R.menu.create_something_menu, popupMenu.getMenu());

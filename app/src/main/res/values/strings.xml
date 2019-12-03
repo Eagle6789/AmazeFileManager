@@ -650,5 +650,6 @@
     <string name="hide_media">Hide from media browsers</string>
 
     <string name="create_something_title">Create something here</string>
+    <string name="create_something_menu_item">Create</string>
 </resources>
 
