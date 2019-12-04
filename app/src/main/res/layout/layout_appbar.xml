@@ -87,12 +87,9 @@
                 </LinearLayout>
             </HorizontalScrollView>
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 >
-
-
                 <TextView
                     android:id="@+id/pathname"
                     android:layout_width="wrap_content"
@@ -105,21 +102,19 @@
                     android:textColor="@android:color/white"
                     android:textSize="12sp" />
 
-
-                <ImageView
-                    android:id="@+id/create_something"
-                    android:layout_width="wrap_content"
+                <Space
+                    android:layout_width="161dp"
                     android:layout_height="wrap_content"
-                    android:background="@null"
-                    android:clickable="true"
-                    android:paddingLeft="191dp"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="8dp"
-                    android:scaleType="fitXY"
-                    app:srcCompat="@drawable/ic_add_white_24dp"
-                    android:focusable="true" />
+                    />
 
-
+                <ImageButton
+                    android:id="@+id/paste_image_button"
+                    app:srcCompat="@drawable/ic_content_paste_white_24dp"
+                    android:background="#00FFFFFF"
+                    android:visibility="invisible"
+                    app:showAsAction="ifRoom|withText"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content" />
 
             </LinearLayout>
 

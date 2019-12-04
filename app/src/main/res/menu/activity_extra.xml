@@ -19,12 +19,37 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <item
         android:id="@+id/paste"
         android:icon="@drawable/ic_content_paste_white_24dp"
         android:title="@string/paste"
         android:visible="false"
         app:showAsAction="ifRoom|withText" />
+
+    <item
+        android:id="@+id/create_something_menu_item"
+        android:icon="@drawable/ic_add_white_24dp"
+        android:title="@string/create_something_menu_item"
+        app:showAsAction="always" >
+        <menu>
+            <item
+                android:id="@+id/new_folder_popup_menu_item"
+                android:title="@string/newfolder"
+                app:showAsAction="ifRoom|withText" />
+
+            <item
+                android:id="@+id/new_file_popup_menu_item"
+                android:title="@string/newfile"
+                app:showAsAction="ifRoom|withText" />
+
+            <item
+                android:id="@+id/new_cloud_popup_menu_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:title="@string/newcloud" />
+        </menu>
+    </item>
     <item
         android:id="@+id/search"
         android:icon="@drawable/ic_search_white_24dp"
@@ -69,30 +94,7 @@
         android:id="@+id/extract"
         android:title="@string/extract"
         android:visible="false" />
-    <item
-        android:id="@+id/create_something_menu_item"
-        android:title="@string/create_something_menu_item"
-        android:visible="true">
-        <menu>
-            <item
-                android:id="@+id/new_folder_popup_menu_item"
-                android:title="@string/newfolder"
-                app:showAsAction="ifRoom|withText" />
 
-            <item
-                android:id="@+id/new_file_popup_menu_item"
-                android:title="@string/newfile"
-                app:showAsAction="ifRoom|withText" />
-
-            <item
-                android:id="@+id/new_cloud_popup_menu_item"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:title="@string/newcloud" />
-        </menu>
-
-
-    </item>
     <!-- orderInCategory=100 to have the element exit always at the end of the list -->
     <item
         android:id="@+id/exit"

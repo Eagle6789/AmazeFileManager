@@ -75,6 +75,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.Toast;
@@ -220,7 +221,7 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
 
     private AppBarLayout appBarLayout;
 
-//    private View fabBgView;
+    //    private View fabBgView;
     private UtilsHandler utilsHandler;
     private CloudHandler cloudHandler;
     private CloudLoaderAsyncTask cloudLoaderAsyncTask;
@@ -276,6 +277,8 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
     private static final String DEFAULT_FALLBACK_STORAGE_PATH = "/storage/sdcard0";
 
     private AdView mAdView;
+
+    private ImageButton pasteImageButton;
 
     /**
      * Called when the activity is first created.
@@ -441,26 +444,27 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
                 }
             }
         });
-
+        // Ads
         MobileAds.initialize(this);
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
-        ImageView createSomethingImageView = findViewById(R.id.create_something);
+        pasteImageButton = findViewById(R.id.paste_image_button);
 
-        createSomethingImageView.setOnClickListener(view -> {
-            // dialog
-//            final MaterialDialog materialDialog = CreateSomethingListDialog.show(this, R.string.create_something_title, mainActivityHelper);
-//            materialDialog.show();
-            showCreateSomethingMenu(view);
+        pasteImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainFragment ma = getCurrentMainFragment();
+                String path = ma.getCurrentPath();
+                ArrayList<HybridFileParcelable> arrayList = new ArrayList<>(Arrays.asList(pasteHelper.paths));
+                boolean move = pasteHelper.operation == PasteHelper.OPERATION_CUT;
+                new PrepareCopyTask(ma, path, move, mainActivity, isRootExplorer())
+                        .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, arrayList);
+                pasteHelper = null;
+                invalidatePasteAppBarButton();
+            }
         });
-
-
-
-
-
-
     }
 
     private void checkForExternalPermission() {
@@ -798,6 +802,17 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
         }
     }
 
+    // Hiding and disabling the paste button -> appbar
+    public void invalidatePasteAppBarButton() {
+        if (pasteHelper != null) {
+            pasteImageButton.setVisibility(View.VISIBLE);
+            pasteImageButton.setEnabled(true);
+        } else {
+            pasteImageButton.setVisibility(View.INVISIBLE);
+            pasteImageButton.setEnabled(false);
+        }
+    }
+
     public void exit() {
         if (backPressedToExitOnce) {
             SshConnectionPool.getInstance().expungeAllConnections();
@@ -894,6 +909,8 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
             appbar.getBottomBar().setClickListener();
 
             invalidatePasteButton(paste);
+            invalidatePasteAppBarButton();
+
             search.setVisible(true);
             if (indicator_layout != null) indicator_layout.setVisibility(View.VISIBLE);
             menu.findItem(R.id.search).setVisible(true);
@@ -1070,6 +1087,7 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
                         .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, arrayList);
                 pasteHelper = null;
                 invalidatePasteButton(item);
+                invalidatePasteAppBarButton();
                 break;
             case R.id.extract:
                 Fragment fragment1 = getFragmentAtFrame();
@@ -2002,10 +2020,4 @@ public class MainActivity extends PermissionsActivity implements SmbConnectionLi
     public void onLoaderReset(Loader<Cursor> loader) {
     }
 
-    private void showCreateSomethingMenu(View view) {
-        PopupMenu popupMenu = new CreateSomethingPopupMenu(this, view, mainActivity);
-        MenuInflater menuInflater = popupMenu.getMenuInflater();
-        menuInflater.inflate(R.menu.create_something_menu, popupMenu.getMenu());
-        popupMenu.show();
-    }
 }
